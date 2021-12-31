@@ -11,8 +11,16 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'public/css', [
-    require('postcss-import'),
-    require('tailwindcss'),
-    require('autoprefixer'),
-]);
+mix.js('resources/js/app.js', 'public/js')
+    // .js('resources/js/aos.js', 'public/js')
+    // .js('resources/js/custom.js', 'public/js')
+    // .js('resources/js/jquery.min.js', 'public/js')
+    // .js('resources/js/smoothscroll.js', 'public/js')
+    // .postCss('resources/css/aos.css', 'public/css')
+    // .postCss('resources/css/base_template.css', 'public/css')
+    // .postCss('resources/css/font-awesome.min.css', 'public/css')
+    .postCss('resources/css/app.css', 'public/css', [
+        require('postcss-import'),
+        require('tailwindcss'),
+        require('autoprefixer'),
+    ]);

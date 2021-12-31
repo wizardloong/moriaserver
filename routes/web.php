@@ -13,12 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [\App\Http\Controllers\IndexController::class, 'index'])->name('index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::group([
+    'prefix' => 'dashboard',
+    'as' => 'dashboard.'
+], function () {
+
+    Route::resource('characters', \App\Http\Controllers\Dashboard\CharactersController::class);
+});
 
 require __DIR__.'/auth.php';
