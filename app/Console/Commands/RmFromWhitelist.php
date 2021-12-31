@@ -11,7 +11,7 @@ class RmFromWhitelist extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'whitelist:rm {player}';
 
     /**
      * The console command description.
@@ -37,6 +37,6 @@ class RmFromWhitelist extends Command
      */
     public function handle()
     {
-        return 0;
+        exec('screen -S minecraft -p 0 -X stuff "`printf "/whitelist remove ' . $this->argument('player') . '\r"`"');
     }
 }

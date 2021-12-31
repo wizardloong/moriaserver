@@ -11,7 +11,7 @@ class AddToWhitelist extends Command
      *
      * @var string
      */
-    protected $signature = 'whitelist:add';
+    protected $signature = 'whitelist:add {player}';
 
     /**
      * The console command description.
@@ -37,6 +37,6 @@ class AddToWhitelist extends Command
      */
     public function handle()
     {
-        return 0;
+        exec('screen -S minecraft -p 0 -X stuff "`printf "/whitelist add ' . $this->argument('player') . '\r"`"');
     }
 }

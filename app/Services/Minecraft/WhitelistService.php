@@ -2,15 +2,21 @@
 
 namespace App\Services\Minecraft;
 
+use Illuminate\Support\Facades\Artisan;
+
 class WhitelistService
 {
     public static function add(string $player)
     {
-        exec('screen -S minecraft -p 0 -X stuff "`printf "/whitelist add ' . $player . '\r"`"');
+        Artisan::call('whitelist:add', [
+            'player' => $player
+        ]);
     }
 
     public static function rm(string $player)
     {
-        exec('screen -S minecraft -p 0 -X stuff "`printf "/whitelist remove ' . $player . '\r"`"');
+        Artisan::call('whitelist:rm', [
+            'player' => $player
+        ]);
     }
 }
