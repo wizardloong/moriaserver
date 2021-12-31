@@ -20,6 +20,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::group([
+    'middleware' => ['auth'],
     'prefix' => 'dashboard',
     'as' => 'dashboard.'
 ], function () {

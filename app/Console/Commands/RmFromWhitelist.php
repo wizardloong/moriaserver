@@ -37,6 +37,6 @@ class RmFromWhitelist extends Command
      */
     public function handle()
     {
-        exec('screen -S minecraft -p 0 -X stuff "`printf "/whitelist remove ' . $this->argument('player') . '\r"`"');
+        exec("screen -S minecraft -p 0 -X stuff \"`printf \"/whitelist remove " . $this->argument('player') . "\r\"`\"");
     }
 }
