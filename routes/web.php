@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Home\CharactersController;
+use App\Http\Controllers\Home\RoleController;
+use App\Http\Controllers\Home\UserController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,19 +17,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+require __DIR__.'/auth.php';
+
+Auth::routes();
+
 Route::get('/', [\App\Http\Controllers\IndexController::class, 'index'])->name('index');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
+Route::get('home/', [HomeController::class, 'index'])->name('home');
 Route::group([
     'middleware' => ['auth'],
-    'prefix' => 'dashboard',
-    'as' => 'dashboard.'
+    'prefix' => 'home',
+    'as' => 'home.'
 ], function () {
-
-    Route::resource('characters', \App\Http\Controllers\Dashboard\CharactersController::class);
+    Route::resource('characters', CharactersController::class);
+    Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
 });
-
-require __DIR__.'/auth.php';

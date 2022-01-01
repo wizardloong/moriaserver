@@ -46,4 +46,26 @@ class User extends Authenticatable
     {
         return $this->hasMany(Character::class);
     }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'role_user');
+    }
+
+    public function hasRole(string $role): bool
+    {
+        return $this->roles->contains(['code' => $role]);
+    }
+
+    public function pCan(string $permissionCode): bool
+    {
+        $permission = Permission::where('code', $permissionCode)->first();
+        foreach ($this->roles as $role)
+        {
+            if ($role->permissions->contains($permission)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
