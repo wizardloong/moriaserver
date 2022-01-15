@@ -37,6 +37,6 @@ class AddToWhitelist extends Command
      */
     public function handle()
     {
-        exec("screen -S minecraft -p 0 -X stuff \"`printf \"/whitelist add " . $this->argument('player') . "\r\"`\"");
+        exec("/home/wizard/screepts/minecraft/AddToWhitelist.sh " . $this->argument('player'));
     }
 }
